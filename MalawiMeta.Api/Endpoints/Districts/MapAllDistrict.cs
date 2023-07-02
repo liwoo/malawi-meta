@@ -6,10 +6,10 @@ namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
 {
-    public static void MapAllDistricts(this WebApplication app)
+    public static void MapAllDistricts(this RouteGroupBuilder app)
     {
         app.MapGet(
-            "/districts",
+            "/",
             [ProducesResponseType(typeof(IEnumerable<DistrictResponseDto>), StatusCodes.Status200OK)] 
             [ProducesResponseType( typeof(ProblemDetails), StatusCodes.Status500InternalServerError)] 
             async (HttpRequest request, HttpResponse response) =>

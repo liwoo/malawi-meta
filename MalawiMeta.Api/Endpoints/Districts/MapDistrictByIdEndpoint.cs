@@ -7,10 +7,10 @@ namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
 {
-    public static void MapDistrictById(this WebApplication app)
+    public static void MapDistrictById(this RouteGroupBuilder app)
     {
         app.MapGet(
-                "/districts/{id}",
+                "/{id}",
                 [ProducesResponseType(typeof(DistrictResponseDto), StatusCodes.Status200OK)]
                 [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
                 [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
