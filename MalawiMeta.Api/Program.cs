@@ -36,8 +36,6 @@ app.UseSwaggerUI(c =>
 
 /*---------------------------------*/
 // endpoint registrations
-app.MapAllDistricts();
-app.MapDistrictById();
-
+app.MapDistricts();
 
 app.Run();
