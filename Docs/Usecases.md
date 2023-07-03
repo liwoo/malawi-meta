@@ -1,4 +1,11 @@
 # Potential UseCases
+This section describes potential use cases for the Malawi Meta API.  Please feel free to make a pull request to add your use case.
+
+## Domain Object Documentation
+- [Aggregate Roots](https://github.com/liwoo/malawi-meta/tree/develop/Docs/AggregateRoots)
+- [Entities](https://github.com/liwoo/malawi-meta/tree/develop/Docs/Entities)
+- [Value Objects](https://github.com/liwoo/malawi-meta/tree/develop/Docs/ValueObjects)
+
 
 ## Potential Data Sources
 - [ZipCodes](https://zip.nowmsg.com/mw_postal_code.asp)
