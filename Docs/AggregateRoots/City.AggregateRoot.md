@@ -12,6 +12,12 @@ public class CityService : ICityService
     public void UpdateGeolocation(double latitude, double longitude)
     public void AddLocation(Guid districtId)
     public void RemoveLocation(Guid districtId)
+    /*----------------------------*/
+    public List<City> GetCities()
+    public City GetCityById(Guid id)
+    public City SearchCityByName(string name)
+    public List<City> GetCitiesInDistrict(Guid districtId)
+    public List<Location> GetCityLocations(Guid id)
 }
 ```
 

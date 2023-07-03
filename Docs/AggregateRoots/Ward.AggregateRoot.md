@@ -12,6 +12,11 @@ public class WardService : IWardService
     public void UpdateGeolocation(double latitude, double longitude)
     public void AddPollingCenter(Guid pollingCenterId)
     public void RemovePollingCenter(Guid pollingCenterId) 
+    /*----------------------------*/
+    public Ward GetWardById(Guid id)
+    public Ward SearchWardByName(string name)
+    public List<Ward> GetWards()
+    public List<PolingCenter> GetPollingCenters(Guid id)
 }
 ```
 

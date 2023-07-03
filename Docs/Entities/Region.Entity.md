@@ -11,6 +11,11 @@ public class RegionService : IRegionService
     public void UpdateFemalePopulation(long population)
     public void AddDistrict(Guid districtId)
     public void RemoveDistrict(Guid districtId)
+    /*----------------------------*/
+    public Region GetRegionById(Guid id)
+    public Region SearchRegionByName(string name)
+    public List<Region> GetRegions()
+    public List<District> GetDistricts(Guid id)
 }
 ```
 
