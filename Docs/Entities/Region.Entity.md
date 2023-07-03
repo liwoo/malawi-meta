@@ -5,7 +5,7 @@ A region is a large area of land that is different from other areas of land, for
 
 ## Methods
 ```csharp
-public class Region : Entity<Guid>
+public class RegionService : IRegionService
 {
     public void UpdateMalePopulation(long population)
     public void UpdateFemalePopulation(long population)

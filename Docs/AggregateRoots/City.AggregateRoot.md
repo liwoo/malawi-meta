@@ -5,7 +5,7 @@ A City is a large human settlement. It can be defined as a permanent and densely
 
 ## Methods
 ```csharp
-public class City : AggregateRoot<Guid>
+public class CityService : ICityService
 {
     public void UpdateMalePopulation(long population)
     public void UpdateFemalePopulation(long population)
