@@ -1,6 +1,4 @@
-using MalawiMeta.Api.Entities.Base;
-
-namespace MalawiMeta.Api.Entities;
+namespace MalawiMeta.Api.Domain.Entities;
 
 
 public sealed record TaContact(string PhoneNumber, string EmailAddress) : ValueObject

@@ -1,5 +1,5 @@
 using ErrorOr;
-using MalawiMeta.Api.Entities;
+using MalawiMeta.Api.Domain.Entities;
 
 namespace MalawiMeta.Api.Repositories;
 
