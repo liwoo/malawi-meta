@@ -14,9 +14,6 @@ public class LocationService : ILocationSerivice
     public Location GetLocationById(Guid id)
     public Location SearchLocationByName(string name)
     public List<Location> GetLocations()
-    /*----------------------------*/
-    public List<Constituency> GetConstituency(Guid id)
-    public List<PollingCenter> GetPollingCenters(Guid id)
 }
 ```
 
