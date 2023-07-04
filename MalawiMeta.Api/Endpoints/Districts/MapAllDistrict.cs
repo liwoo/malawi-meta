@@ -1,4 +1,4 @@
-using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Extensions;
 using MalawiMeta.Api.TransferObjects;
 using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +17,8 @@ public static partial class DistrictEndpoints
         {
             var context = request.HttpContext;
 
-            if (context.RequestServices.GetService(typeof(IFetchAllDistrictsUseCase)) is not IFetchAllDistrictsUseCase fetchAllDistricts)
-            {
-                 response.StatusCode = StatusCodes.Status500InternalServerError;
-                 var problemDetails = Responses.DefaultErrorResponse(context.Request.Path);
-                 await response.WriteAsJsonAsync(problemDetails);
-                return;
-            }
-            
+            var fetchAllDistricts = await context.GetServiceOrThrowAsync<IFetchAllDistrictsUseCase>();
+
             var result = await fetchAllDistricts.ExecuteAsync(null);
     
             result.SwitchFirst(

@@ -7,7 +7,7 @@ public static partial class DistrictEndpoints
 {
     public static void MapDistricts(this WebApplication app)
     {
-        app.MapGroup("/districts")
+        app.MapGroup("/api/districts")
             .MapDistrictsApi()
             .WithTags("Districts");
     }
