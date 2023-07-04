@@ -1,49 +1,55 @@
 using ErrorOr;
-using MalawiMeta.Api.Repositories;
+using MalawiMeta.Api.Domain.Aggregates;
+using MalawiMeta.Api.Domain.Entities;
 using MalawiMeta.Api.TransferObjects;
 
 namespace MalawiMeta.Api.Domain.Services;
 
 public interface IDistrictService
 {
-    public Task<ErrorOr<IEnumerable<DistrictResponseDto>>> GetDistrictsAsync();
-    public Task<ErrorOr<DistrictResponseDto>> GetDistrictByIdAsync(string? id);
+    public Task<ErrorOr<IEnumerable<District>>> GetDistrictsAsync();
+    public Task<ErrorOr<District>> GetDistrictByIdAsync(Guid id);
 }
 
-public class DistrictService : IDistrictService
+public class InMemoryDistrictService : IDistrictService
 {
-    private readonly IDistrictRepository _districtRepository;
+    private readonly IEnumerable<District> _districts;
 
-    public DistrictService(IDistrictRepository districtRepository)
+    public InMemoryDistrictService()
     {
-        _districtRepository = districtRepository;
-    }
-
-    public async Task<ErrorOr<IEnumerable<DistrictResponseDto>>> GetDistrictsAsync()
-    {
-        var districtResult = await _districtRepository.GetDistrictsAsync();
-
-        return districtResult.IsError switch
+        IEnumerable<District> initialDistrict = new[]
         {
-            true => districtResult.FirstError,
-            _ => districtResult.Value.Select(d => new DistrictResponseDto(d.Name, d.Region.ToString())).ToList()
+            District.Create("Blantyre", Region.Southern),
+            District.Create("Chikwawa", Region.Southern),
+            District.Create("Chiradzulu", Region.Southern),
+            District.Create("Machinga", Region.Southern),
+            //few from the central region
+            District.Create("Dedza", Region.Central),
+            District.Create("Dowa", Region.Central),
+            District.Create("Kasungu", Region.Central),
+            District.Create("Lilongwe", Region.Central),
+            //few from the northern region
+            District.Create("Chitipa", Region.Northern),
+            District.Create("Karonga", Region.Northern),
+            District.Create("Likoma", Region.Northern),
         };
+        _districts = initialDistrict;
     }
 
-    public async Task<ErrorOr<DistrictResponseDto>> GetDistrictByIdAsync(string? id)
+    public Task<ErrorOr<IEnumerable<District>>> GetDistrictsAsync()
     {
-        var guuidId = Guid.TryParse(id, out var guuid) ? guuid : Guid.Empty;
-        if (guuidId == Guid.Empty)
+        return Task.FromResult(ErrorOrFactory.From(_districts));
+    }
+
+    public Task<ErrorOr<District>> GetDistrictByIdAsync(Guid id)
+    {
+        var district = _districts.FirstOrDefault(d => d.Id == id);
+
+        return district switch
         {
-            return Error.Validation(description: "ID is not a valid GUID", code: StatusCodes.Status400BadRequest.ToString());
-        }
-        
-        var districtResult = await _districtRepository.GetDistrictByIdAsync(guuidId);
-        
-        return districtResult.IsError switch
-        {
-            true => districtResult.FirstError,
-            _ => new DistrictResponseDto(districtResult.Value.Name, districtResult.Value.Region.ToString())
+            null => Task.FromResult<ErrorOr<District>>(Error.NotFound(StatusCodes.Status404NotFound.ToString(), 
+                "District not found")),
+            _ => Task.FromResult<ErrorOr<District>>(district)
         };
     }
 }
