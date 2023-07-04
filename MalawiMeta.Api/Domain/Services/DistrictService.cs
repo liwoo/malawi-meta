@@ -19,19 +19,19 @@ public class InMemoryDistrictService : IDistrictService
     {
         IEnumerable<District> initialDistrict = new[]
         {
-            District.Create("Blantyre", Region.Southern),
-            District.Create("Chikwawa", Region.Southern),
-            District.Create("Chiradzulu", Region.Southern),
-            District.Create("Machinga", Region.Southern),
+            District.Create("Blantyre", "BT", Guid.NewGuid()),
+            District.Create("Chikwawa", "CK", Guid.NewGuid()),
+            District.Create("Chiradzulu", "CZ", Guid.NewGuid()),
+            District.Create("Machinga", "MCH", Guid.NewGuid()),
             //few from the central region
-            District.Create("Dedza", Region.Central),
-            District.Create("Dowa", Region.Central),
-            District.Create("Kasungu", Region.Central),
-            District.Create("Lilongwe", Region.Central),
+            District.Create("Dedza", "DZ",Guid.NewGuid()),
+            District.Create("Dowa", "DA", Guid.NewGuid()),
+            District.Create("Kasungu", "KU",Guid.NewGuid()),
+            District.Create("Lilongwe", "LL",Guid.NewGuid()),
             //few from the northern region
-            District.Create("Chitipa", Region.Northern),
-            District.Create("Karonga", Region.Northern),
-            District.Create("Likoma", Region.Northern),
+            District.Create("Chitipa", "CP", Guid.NewGuid()),
+            District.Create("Karonga", "KA",Guid.NewGuid()),
+            District.Create("Likoma", "LK",Guid.NewGuid())
         };
         _districts = initialDistrict;
     }

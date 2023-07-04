@@ -26,7 +26,7 @@ public class FetchAllDistrictsUseCase : IFetchAllDistrictsUseCase
         return districtResult.IsError switch
         {
             true => districtResult.FirstError,
-            _ => districtResult.Value.Select(d => new DistrictResponseDto(d.Name, d.RegionId.ToString())).ToList()
+            _ => districtResult.Value.Select(d => new DistrictResponseDto(d.Name, d.Code, d.RegionId.ToString())).ToList()
         };
         
     }
