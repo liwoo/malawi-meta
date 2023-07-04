@@ -14,6 +14,7 @@ public class ILocationSerivice
     public Location GetLocationById(Guid id)
     public Location SearchLocationByName(string name)
     public List<Location> GetLocations()
+    public ZipCode GetZipCode(Guid id)
 }
 ```
 

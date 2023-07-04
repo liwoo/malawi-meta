@@ -16,7 +16,6 @@ public class ICityService
     public List<City> GetCities()
     public City GetCityById(Guid id)
     public City SearchCityByName(string name)
-    public List<City> GetCitiesInDistrict(Guid districtId)
     public List<Location> GetCityLocations(Guid id)
 }
 ```
