@@ -1,13 +1,14 @@
 using System.Net;
 using FluentAssertions;
 using MalawiMeta.Api.TransferObjects;
-using MalawiMeta.Test.Fixtures;
+using MalawiMeta.Test.Integration.Fixtures;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace MalawiMeta.Test.Integration.DistrictApiTests;
 
-public class FetchAllDistrictApiTest : IClassFixture<TestApplicationFactory<Program>>
+[Collection("TestApplicationFactory collection")]
+public class FetchAllDistrictApiTest
 {
    private readonly TestApplicationFactory<Program> _factory;
 
