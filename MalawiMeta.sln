@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MalawiMeta.Api", "MalawiMeta.Api\MalawiMeta.Api.csproj", "{8FBA5504-2774-4D8D-A6BC-E8BA39DF9A74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MalawiMeta.Test", "MalawiMeta.Test\MalawiMeta.Test.csproj", "{1CCFEC72-C293-40D2-93B7-E9CC6D05E4AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8FBA5504-2774-4D8D-A6BC-E8BA39DF9A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FBA5504-2774-4D8D-A6BC-E8BA39DF9A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FBA5504-2774-4D8D-A6BC-E8BA39DF9A74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CCFEC72-C293-40D2-93B7-E9CC6D05E4AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCFEC72-C293-40D2-93B7-E9CC6D05E4AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCFEC72-C293-40D2-93B7-E9CC6D05E4AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCFEC72-C293-40D2-93B7-E9CC6D05E4AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

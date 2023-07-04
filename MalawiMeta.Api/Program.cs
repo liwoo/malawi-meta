@@ -40,3 +40,5 @@ app.UseSwaggerUI(c =>
 app.MapDistricts();
 
 app.Run();
+
+public partial class Program { }
