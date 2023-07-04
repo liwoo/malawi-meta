@@ -15,6 +15,7 @@ public class IWardService
     /*----------------------------*/
     public Ward GetWardById(Guid id)
     public Ward SearchWardByName(string name)
+    public List<Ward> GetBatchWardsById(List<Guid> ids)
     public List<Ward> GetWards()
     public List<PolingCenter> GetPollingCenters(Guid id)
     public Constituency GetConstituency(Guid id)

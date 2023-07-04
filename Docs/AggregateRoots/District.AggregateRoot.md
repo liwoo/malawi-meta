@@ -18,6 +18,7 @@ public class ILocationSerivice
     public void RemoveConstituency(Guid constituencyId)
     /*----------------------------*/
     public District GetDistrictById(Guid id)
+    public List<District> GetBatchDistrictsById(List<Guid> ids)
     public District SearchDistrictByName(string name)
     public List<District> GetDistricts()
     public List<TraditionalAuthority> GetTraditionalAuthorities(Guid id)

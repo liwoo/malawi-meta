@@ -14,6 +14,7 @@ public class IRegionService
     /*----------------------------*/
     public Region GetRegionById(Guid id)
     public Region SearchRegionByName(string name)
+    public List<Region> GetBatchRegionsById(List<Guid> ids)
     public List<Region> GetRegions()
     public List<District> GetDistricts(Guid id)
 }

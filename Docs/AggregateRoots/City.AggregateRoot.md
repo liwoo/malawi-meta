@@ -14,6 +14,7 @@ public class ICityService
     public void RemoveLocation(Guid districtId)
     /*----------------------------*/
     public List<City> GetCities()
+    public List<City> GetBatchCitiesById(List<Guid> ids)
     public City GetCityById(Guid id)
     public City SearchCityByName(string name)
     public List<Location> GetCityLocations(Guid id)

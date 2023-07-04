@@ -12,6 +12,7 @@ public class ILocationSerivice
     public void UpdateGeolocation(double latitude, double longitude)
     /*----------------------------*/
     public Location GetLocationById(Guid id)
+    public List<Location> GetBatchLocationsById(List<Guid> ids)
     public Location SearchLocationByName(string name)
     public List<Location> GetLocations()
     public ZipCode GetZipCode(Guid id)
