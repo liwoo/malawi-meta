@@ -1,4 +1,4 @@
-using MalawiMeta.Api.Services;
+using MalawiMeta.Api.Domain.Services;
 using MalawiMeta.Api.TransferObjects;
 using Microsoft.AspNetCore.Mvc;
 

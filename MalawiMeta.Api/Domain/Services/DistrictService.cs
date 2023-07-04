@@ -2,7 +2,7 @@ using ErrorOr;
 using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.TransferObjects;
 
-namespace MalawiMeta.Api.Services;
+namespace MalawiMeta.Api.Domain.Services;
 
 public interface IDistrictService
 {

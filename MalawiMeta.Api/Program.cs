@@ -1,6 +1,6 @@
-﻿using MalawiMeta.Api.Endpoints.Districts;
+﻿using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Endpoints.Districts;
 using MalawiMeta.Api.Repositories;
-using MalawiMeta.Api.Services;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
