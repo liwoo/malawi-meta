@@ -1,2 +1,0 @@
-# Dapper
-Dapper Framework for .NET Core is a simple object mapper for .NET and owns the title of King of Micro ORM in terms of speed and is virtually as fast as using a raw ADO.NET data reader. Dapper was built with performance and ease of use in mind. The goal of the project is to add a thin layer of extension methods above the IDbConnection interface in the System.Data namespace. Dapper is a NuGet library that you can add in to your project that will extend your IDbConnection interface.
