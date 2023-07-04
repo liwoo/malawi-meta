@@ -1,12 +1,13 @@
 using MalawiMeta.Api.Domain.Services;
 using MalawiMeta.Api.TransferObjects;
+using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
 {
-    public static void MapAllDistricts(this RouteGroupBuilder app)
+    private static void MapAllDistricts(this IEndpointRouteBuilder app)
     {
         app.MapGet(
             "/",
@@ -16,7 +17,7 @@ public static partial class DistrictEndpoints
         {
             var context = request.HttpContext;
 
-            if (context.RequestServices.GetService(typeof(IDistrictService)) is not IDistrictService districtService)
+            if (context.RequestServices.GetService(typeof(IFetchAllDistrictsUseCase)) is not IFetchAllDistrictsUseCase fetchAllDistricts)
             {
                  response.StatusCode = StatusCodes.Status500InternalServerError;
                  var problemDetails = Responses.DefaultErrorResponse(context.Request.Path);
@@ -24,7 +25,7 @@ public static partial class DistrictEndpoints
                 return;
             }
             
-            var result = await districtService.GetDistrictsAsync();
+            var result = await fetchAllDistricts.ExecuteAsync(null);
     
             result.SwitchFirst(
                 districts => response.WriteAsJsonAsync(districts),
