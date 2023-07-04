@@ -9,6 +9,9 @@ The Malawi Meta API is a simple yet powerful application built to serve informat
 
 This project was born out of the need for a centralized, easily accessible source of accurate information about Malawi's districts and regions. By exposing this data through a public API, we aim to facilitate research and development projects, foster innovation, and contribute to the growing digital economy in Malawi.
 
+### Documentation
+You may find out about the documentation [here](https://github.com/liwoo/malawi-meta/blob/develop/Docs/Usecases.md)
+
 ## Technologies
 
 The application is built with the following technologies:

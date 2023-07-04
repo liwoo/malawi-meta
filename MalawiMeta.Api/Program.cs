@@ -1,6 +1,6 @@
-﻿using MalawiMeta.Api.Endpoints.Districts;
-using MalawiMeta.Api.Repositories;
-using MalawiMeta.Api.Services;
+﻿using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Endpoints.Districts;
+using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +20,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddScoped<IDistrictService, DistrictService>();
-builder.Services.AddSingleton<IDistrictRepository, InMemoryDistrictRepository>();
+builder.Services.AddScoped<IDistrictService, InMemoryDistrictService>();
+builder.Services.AddScoped<IFetchAllDistrictsUseCase, FetchAllDistrictsUseCase>();
+builder.Services.AddScoped<IFetchDistrictByIdUseCase, FetchDistrictByIdUseCase>();
 
 var app = builder.Build();
 /*---------------------------------*/
@@ -39,3 +40,5 @@ app.UseSwaggerUI(c =>
 app.MapDistricts();
 
 app.Run();
+
+public partial class Program { }

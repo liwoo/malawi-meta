@@ -1,4 +1,4 @@
-namespace MalawiMeta.Api.Entities.Base;
+namespace MalawiMeta.Api.Domain;
 
 public abstract class Entity<TPrimaryKey>
 {

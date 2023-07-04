@@ -1,5 +1,7 @@
-using MalawiMeta.Api.Services;
+using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Extensions;
 using MalawiMeta.Api.TransferObjects;
+using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 
@@ -7,7 +9,7 @@ namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
 {
-    public static void MapDistrictById(this RouteGroupBuilder app)
+    private static void MapDistrictById(this IEndpointRouteBuilder app)
     {
         app.MapGet(
                 "/{id}",
@@ -16,42 +18,27 @@ public static partial class DistrictEndpoints
                 [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
                 async (HttpRequest request, HttpResponse response) =>
                 {
-                    try
-                    {
-                        var context = request.HttpContext;
-                        var id = request.RouteValues["id"];
+                    
+                    var context = request.HttpContext;
+                    var id = request.RouteValues["id"];
+                    var path = context.Request.Path;
 
-                        var districtService =
-                            context.RequestServices.GetService(typeof(IDistrictService)) as IDistrictService;
+                    var fetchDistrictById = await context.GetServiceOrThrowAsync<IFetchDistrictByIdUseCase>();
+                    
+                    var result = await fetchDistrictById.ExecuteAsync(new FetchDistrictByIdCaseArgs(id?.ToString() ?? string.Empty));
 
-                        var path = context.Request.Path;
-
-                        if (districtService is null)
+                    result.SwitchFirst(
+                        district => response.WriteAsJsonAsync(district),
+                        error =>
                         {
-                            await response.WriteAsJsonAsync(Responses.DefaultErrorResponse(path));
-                            return;
+                            var code = int.TryParse(error.Code, out var parsedCode)
+                                ? parsedCode
+                                : StatusCodes.Status500InternalServerError;
+                            response.StatusCode = code;
+                            response.WriteAsJsonAsync(Responses.DefaultErrorResponse(path, error.Type.ToString(),
+                                error.Description, code));
                         }
-
-                        var result = await districtService.GetDistrictByIdAsync(id?.ToString());
-
-                        result.SwitchFirst(
-                            district => response.WriteAsJsonAsync(district),
-                            error =>
-                            {
-                                var code = int.TryParse(error.Code, out var parsedCode)
-                                    ? parsedCode
-                                    : StatusCodes.Status500InternalServerError;
-                                response.StatusCode = code;
-                                response.WriteAsJsonAsync(Responses.DefaultErrorResponse(path, error.Type.ToString(),
-                                    error.Description, code));
-                            }
-                        );
-                    }
-                    catch (Exception e)
-                    {
-                        response.StatusCode = StatusCodes.Status500InternalServerError;
-                        await response.WriteAsJsonAsync(Responses.DefaultErrorResponse(request.Path, e.Message));
-                    }
+                    );
 
                 })
             .WithName("GetDistrictById")

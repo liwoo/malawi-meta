@@ -1,4 +1,3 @@
-using MalawiMeta.Api.Services;
 using MalawiMeta.Api.TransferObjects;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,7 +7,7 @@ public static partial class DistrictEndpoints
 {
     public static void MapDistricts(this WebApplication app)
     {
-        app.MapGroup("/districts")
+        app.MapGroup("/api/districts")
             .MapDistrictsApi()
             .WithTags("Districts");
     }
