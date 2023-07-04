@@ -5,7 +5,7 @@ A ward is a local authority area, typically used for electoral purposes. Wards a
 
 ## Methods
 ```csharp
-public class WardService : IWardService
+public class IWardService
 {
     public void UpdateMalePopulation(long population)
     public void UpdateFemalePopulation(long population)

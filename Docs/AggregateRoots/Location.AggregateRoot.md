@@ -5,7 +5,7 @@ A location is a township in a city. In Rural areas, it would occupy the same jur
 
 ## Methods
 ```csharp
-public class LocationService : ILocationSerivice
+public class ILocationSerivice
 {
     public void UpdateMalePopulation(long population)
     public void UpdateFemalePopulation(long population)
