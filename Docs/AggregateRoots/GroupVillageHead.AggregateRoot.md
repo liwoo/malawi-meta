@@ -18,7 +18,7 @@ public interface IGroupVillageHeadSerivice
     public GroupVillageHead GetGroupVillageHeadById(Guid id);
     public List<GroupVillageHead> GetBatchGroupVillageHeadsById(List<Guid> ids);
     public GroupVillageHead SearchGroupVillageHeadByName(string name);
-    public List<GroupVillageHead> GetGroupVillageHead();
+    public List<GroupVillageHead> GetGroupVillageHeads();
     public List<Village> GetVillages(Guid id);
 }
 ```

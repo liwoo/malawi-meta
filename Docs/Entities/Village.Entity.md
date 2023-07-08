@@ -27,7 +27,6 @@ public interface IVillageService
 {
   "id": "00000000-0000-0000-0000-000000000000",
   "name": "string",
-
   "group-village-head-id": "00000000-0000-0000-0000-000000000000",
   "population": {
     "male": 556,

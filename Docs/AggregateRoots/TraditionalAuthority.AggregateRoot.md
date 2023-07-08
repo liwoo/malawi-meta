@@ -18,7 +18,7 @@ public interface ITraditionalAuthoritySerivice
     public TraditionalAuthority GetTraditionalAuthorityById(Guid id)
     public List<TraditionalAuthority> GetBatchTraditionalAuthoritiesById(List<Guid> ids)
     public TraditionalAuthority SearchTraditionalAuthorityByName(string name)
-    public List<TraditionalAuthority> GetTraditionalAuthority()
+    public List<TraditionalAuthority> GetTraditionalAuthorities()
     public List<GroupVillageHead> GetGroupVillageHeads(Guid id)
 }
 ```

@@ -18,7 +18,7 @@ public interface IConstituencySerivice
     public Constituency GetConstituencyById(Guid id)
     public List<Constituency> GetBatchConstituenciesById(List<Guid> ids)
     public Constituency SearchConstituencyByName(string name)
-    public List<Constituency> GetConstituency()
+    public List<Constituency> GetConstituencies()
     public List<Ward> GetWards(Guid id)
 }
 ```
