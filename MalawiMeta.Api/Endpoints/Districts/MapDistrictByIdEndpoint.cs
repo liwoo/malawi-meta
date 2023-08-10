@@ -1,4 +1,3 @@
-using MalawiMeta.Api.Domain.Services;
 using MalawiMeta.Api.Extensions;
 using MalawiMeta.Api.TransferObjects;
 using MalawiMeta.Api.UseCases.Districts;

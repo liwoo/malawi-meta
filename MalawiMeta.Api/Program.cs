@@ -1,5 +1,5 @@
-﻿using MalawiMeta.Api.Domain.Services;
-using MalawiMeta.Api.Endpoints.Districts;
+﻿using MalawiMeta.Api.Endpoints.Districts;
+using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.OpenApi.Models;
 

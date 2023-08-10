@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Immutable;
 using ErrorOr;
 using FluentAssertions;
-using MalawiMeta.Api.Domain.Aggregates;
-using MalawiMeta.Api.Domain.Services;
-using MalawiMeta.Api.TransferObjects;
+using MalawiMeta.Api.Domain.District;
+using MalawiMeta.Api.Domain.Shared.ValueObjects;
+using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.AspNetCore.Http;
 using Moq;
@@ -35,7 +33,7 @@ public class FetchAllDistrictsUseCaseTest
     public async Task ExecuteAsync_WhenDistrictServiceReturnsDistricts_ReturnsDistricts()
     {
         // Arrange
-        var district1 = District.Create("district1", "DT", Guid.NewGuid());
+        var district1 = District.Create("district1", "DT", new RegionId(Guid.NewGuid()));
         
         //create an IEnumerable<District> from the above district
         IEnumerable<District> expectedDistricts = new List<District> {district1};
