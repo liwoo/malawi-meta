@@ -11,7 +11,7 @@ public class TestApplicationFactory<TStartup> : WebApplicationFactory<TStartup> 
     {
         builder.ConfigureServices(services =>
         {
-            services.AddScoped<IDistrictService, InMemoryDistrictService>();
+            services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
         });
     }
 }

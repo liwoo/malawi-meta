@@ -13,11 +13,11 @@ public interface IFetchDistrictByIdUseCase : IUseCase<FetchDistrictByIdCaseArgs,
 
 public class FetchDistrictByIdUseCase : IFetchDistrictByIdUseCase
 {
-    private readonly IDistrictService _districtService;
+    private readonly IDistrictRepository _districtRepository;
 
-    public FetchDistrictByIdUseCase(IDistrictService districtService)
+    public FetchDistrictByIdUseCase(IDistrictRepository districtRepository)
     {
-        _districtService = districtService;
+        _districtRepository = districtRepository;
     }
 
     public async Task<ErrorOr<DistrictResponseDto>> ExecuteAsync(FetchDistrictByIdCaseArgs? args)
@@ -28,7 +28,7 @@ public class FetchDistrictByIdUseCase : IFetchDistrictByIdUseCase
             return Error.Validation(description: "ID is not a valid GUID", code: StatusCodes.Status400BadRequest.ToString());
         }
         
-        var districtResult = await _districtService.GetDistrictByIdAsync(guuidId);
+        var districtResult = await _districtRepository.GetDistrictByIdAsync(guuidId);
         
         return districtResult.IsError switch
         {

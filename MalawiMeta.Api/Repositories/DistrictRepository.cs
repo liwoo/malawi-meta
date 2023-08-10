@@ -4,17 +4,17 @@ using MalawiMeta.Api.Domain.Shared.ValueObjects;
 
 namespace MalawiMeta.Api.Repositories;
 
-public interface IDistrictService
+public interface IDistrictRepository
 {
     public Task<ErrorOr<IEnumerable<District>>> GetDistrictsAsync();
     public Task<ErrorOr<District>> GetDistrictByIdAsync(Guid id);
 }
 
-public class InMemoryDistrictService : IDistrictService
+public class InMemoryDistrictRepository : IDistrictRepository
 {
     private readonly IEnumerable<District> _districts;
 
-    public InMemoryDistrictService()
+    public InMemoryDistrictRepository()
     {
         IEnumerable<District> initialDistrict = new[]
         {

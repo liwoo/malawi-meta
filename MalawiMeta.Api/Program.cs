@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddScoped<IDistrictService, InMemoryDistrictService>();
+builder.Services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
 builder.Services.AddScoped<IFetchAllDistrictsUseCase, FetchAllDistrictsUseCase>();
 builder.Services.AddScoped<IFetchDistrictByIdUseCase, FetchDistrictByIdUseCase>();
 

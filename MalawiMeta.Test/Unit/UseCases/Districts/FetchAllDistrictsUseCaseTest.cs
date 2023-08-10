@@ -17,7 +17,7 @@ public class FetchAllDistrictsUseCaseTest
     {
         // Arrange
         var expectedError = Error.Validation(StatusCodes.Status404NotFound.ToString(), "Districts not found");
-        var mockDistrictService = new Mock<IDistrictService>();
+        var mockDistrictService = new Mock<IDistrictRepository>();
         mockDistrictService.Setup(s => s.GetDistrictsAsync()).ReturnsAsync(expectedError);
         var useCase = new FetchAllDistrictsUseCase(mockDistrictService.Object);
         
@@ -38,7 +38,7 @@ public class FetchAllDistrictsUseCaseTest
         //create an IEnumerable<District> from the above district
         IEnumerable<District> expectedDistricts = new List<District> {district1};
         
-        var mockDistrictService = new Mock<IDistrictService>();
+        var mockDistrictService = new Mock<IDistrictRepository>();
         
         var expectedErrorOrDistricts = ErrorOrFactory.From(expectedDistricts);
         mockDistrictService.Setup(s => s.GetDistrictsAsync()).ReturnsAsync(expectedErrorOrDistricts);

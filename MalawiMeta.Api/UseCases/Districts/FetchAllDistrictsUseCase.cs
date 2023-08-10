@@ -11,16 +11,16 @@ public interface IFetchAllDistrictsUseCase : IUseCase<object, ErrorOr<IEnumerabl
 
 public class FetchAllDistrictsUseCase : IFetchAllDistrictsUseCase
 {
-    private readonly IDistrictService _districtService;
+    private readonly IDistrictRepository _districtRepository;
 
-    public FetchAllDistrictsUseCase(IDistrictService districtService)
+    public FetchAllDistrictsUseCase(IDistrictRepository districtRepository)
     {
-        _districtService = districtService;
+        _districtRepository = districtRepository;
     }
 
     public async Task<ErrorOr<IEnumerable<DistrictResponseDto>>> ExecuteAsync(object? args)
     {
-        var districtResult = await _districtService.GetDistrictsAsync();
+        var districtResult = await _districtRepository.GetDistrictsAsync();
 
         return districtResult.IsError switch
         {
