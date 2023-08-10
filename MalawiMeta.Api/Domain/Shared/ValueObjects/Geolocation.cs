@@ -1,4 +1,4 @@
-namespace MalawiMeta.Api.Domain.ValueObjects;
+namespace MalawiMeta.Api.Domain.Shared.ValueObjects;
 
 public record Geolocation(double Latitude, double Longitude) : ValueObject
 {

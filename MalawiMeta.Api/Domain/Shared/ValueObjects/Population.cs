@@ -1,4 +1,4 @@
-namespace MalawiMeta.Api.Domain.ValueObjects;
+namespace MalawiMeta.Api.Domain.Shared.ValueObjects;
 
 public sealed record Population(long Male, long Female, long Total) : ValueObject
 {
