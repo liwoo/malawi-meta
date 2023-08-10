@@ -11,6 +11,8 @@ public class ILocationSerivice
     public void UpdateFemalePopulation(long population)
     public void UpdateGeolocation(double latitude, double longitude)
     /*----------------------------*/
+    /*  Data Acess Methods (Repo) */
+    /*----------------------------*/
     public Location GetLocationById(Guid id)
     public List<Location> GetBatchLocationsById(List<Guid> ids)
     public Location SearchLocationByName(string name)

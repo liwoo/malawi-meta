@@ -13,6 +13,8 @@ public class ICityService
     public void AddLocation(Guid districtId)
     public void RemoveLocation(Guid districtId)
     /*----------------------------*/
+    /*  Data Acess Methods (Repo) */
+    /*----------------------------*/
     public List<City> GetCities()
     public List<City> GetBatchCitiesById(List<Guid> ids)
     public City GetCityById(Guid id)
