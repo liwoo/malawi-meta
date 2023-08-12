@@ -6,15 +6,15 @@ public class InMemoryCityService : ICityService
     private readonly IEnumerable<City> _cities;
     public InMemoryCityService()
     {
-        IEnumerable<City> initialCity = new[]
+        IEnumerable<City> initialCities = new[]
         {
-            City.Create("Blantyre", Guid.NewGuid()),
-            City.Create("Zomba", Guid.NewGuid()),
-            City.Create("Mangochi", Guid.NewGuid()),
-            City.Create("Lilongwe", Guid.NewGuid()),
-            City.Create("Mzuzu", Guid.NewGuid()),
+            City.Create("Blantyre", Guid.NewGuid(), -15.786111, 35.005833),
+            City.Create("Zomba", Guid.NewGuid(), -15.3925, 35.3133),
+            City.Create("Mangochi", Guid.NewGuid(), -14.478333, 35.264722),
+            City.Create("Lilongwe", Guid.NewGuid(), -13.966667, 33.783333),
+            City.Create("Mzuzu", Guid.NewGuid(), -11.465556, 34.020882),
         };
-        _cities = initialCity;
+        _cities = initialCities;
     }
     public Task<ErrorOr<IEnumerable<City>>> GetCitiesAsync()
     {
