@@ -5,8 +5,3 @@ public sealed record CityResponseDto(
     string DistrictId,
     GeolocationDto Geolocation
 );
-
-public sealed record GeolocationDto(
-    double Latitude,
-    double Longitude
-);
