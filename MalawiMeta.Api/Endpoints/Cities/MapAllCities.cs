@@ -9,11 +9,7 @@ public static partial class CityEndpoints
 {
     private static void MapAllCities(this IEndpointRouteBuilder app)
     {
-        app.MapGet(
-            "/",
-            [ProducesResponseType(typeof(IEnumerable<CityResponseDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        async (HttpRequest request, HttpResponse response) =>
+        app.MapGet("/", async (HttpRequest request, HttpResponse response) =>
             {
                 var context = request.HttpContext;
 
@@ -25,7 +21,10 @@ public static partial class CityEndpoints
                     cities => response.WriteAsJsonAsync(cities),
                     error => response.WriteAsJsonAsync(new { Message = error.Description })
                 );
-            }).WithName("GetCities");
+            }
+        ).WithName("GetCities")
+         .Produces <IEnumerable<CityResponseDto>> (StatusCodes.Status200OK)
+         .Produces <ProblemDetails> (StatusCodes.Status500InternalServerError);
     }
 }
 
