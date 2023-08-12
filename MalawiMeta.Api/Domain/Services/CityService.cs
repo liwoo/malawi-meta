@@ -1,12 +1,9 @@
 ﻿using ErrorOr;
 using MalawiMeta.Api.Domain.Aggregates;
-
 namespace MalawiMeta.Api.Domain.Services;
-
 public class InMemoryCityService : ICityService
 {
     private readonly IEnumerable<City> _cities;
-
     public InMemoryCityService()
     {
         IEnumerable<City> initialCity = new[]
@@ -19,7 +16,6 @@ public class InMemoryCityService : ICityService
         };
         _cities = initialCity;
     }
-
     public Task<ErrorOr<IEnumerable<City>>> GetCitiesAsync()
     {
         return Task.FromResult(ErrorOrFactory.From(_cities));
@@ -38,7 +34,6 @@ public class InMemoryCityService : ICityService
     {
         throw new NotImplementedException();
     }
-    
     public Task<ErrorOr<City>> UpdateCityAsync(City city)
     {
         throw new NotImplementedException();
