@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MalawiMeta.Api.Domain.Aggregates;
+
 namespace MalawiMeta.Api.Domain.Services;
 public class InMemoryCityService : ICityService
 {
