@@ -33,6 +33,16 @@ public class FetchCityByIdUseCase : IFetchCityByIdUseCase
         {
             return cityResult.FirstError;
         }
-        return new CityResponseDto(cityResult.Value.Name, cityResult.Value.DistrictId.ToString());
+
+        var cityResponse = new CityResponseDto(
+            cityResult.Value.Name, 
+            cityResult.Value.DistrictId.ToString(), 
+            new GeolocationDto(
+                cityResult.Value.Geolocation.Latitude, 
+                cityResult.Value.Geolocation.Longitude
+            )
+        );
+
+        return cityResponse;
     }
 }
