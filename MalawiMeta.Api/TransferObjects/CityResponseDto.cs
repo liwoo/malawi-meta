@@ -1,7 +1,7 @@
 ﻿namespace MalawiMeta.Api.TransferObjects;
 
 public sealed record CityResponseDto(
-    string City,
+    string Name,
     string DistrictId,
     GeolocationDto Geolocation
 );
