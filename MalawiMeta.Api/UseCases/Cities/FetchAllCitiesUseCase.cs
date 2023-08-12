@@ -25,6 +25,18 @@ public class FetchAllCitiesUseCase : IFetchAllCitiesUseCase
         {
             return cityResult.FirstError;
         }
-        return cityResult.Value.Select(d => new CityResponseDto(d.Name, d.DistrictId.ToString())).ToList();
+        
+        var cityResponseList = cityResult.Value.Select(d =>
+            new CityResponseDto(
+                d.Name,
+                d.DistrictId.ToString(),
+                new GeolocationDto(d.Geolocation.Latitude, d.Geolocation.Longitude)
+            )
+        ).ToList(); // Convert to List<CityResponseDto>
+
+        return cityResponseList;
     }
 }
+
+
+
