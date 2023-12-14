@@ -33,7 +33,7 @@ public class FetchAllDistrictsUseCaseTest
     public async Task ExecuteAsync_WhenDistrictServiceReturnsDistricts_ReturnsDistricts()
     {
         // Arrange
-        var district1 = District.Create("district1", "DT", new RegionId(Guid.NewGuid()));
+        var district1 = District.Create(Guid.Parse("0a8d99ac-e161-459e-a719-76992b72e8c2"),"district1", "DT", new RegionId(Guid.NewGuid()));
         
         //create an IEnumerable<District> from the above district
         IEnumerable<District> expectedDistricts = new List<District> {district1};
@@ -51,5 +51,30 @@ public class FetchAllDistrictsUseCaseTest
         result.IsError.Should().BeFalse();
         result.Value.Count().Should().Be(1);
         result.Value.First().District.Should().Be(district1.Name);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenDistrictServiceReturnsDistricts_ReturnsDistrictWithRegionIdValue()
+    {
+        // Arrange
+        var regionId = Guid.NewGuid();
+        var district1 = District.Create(Guid.Parse("0a8d99ac-e161-459e-a719-76992b72e8c2"), "district1", "DT", new RegionId(regionId));
+        
+        //create an IEnumerable<District> from the above district
+        IEnumerable<District> expectedDistricts = new List<District> {district1};
+        
+        var mockDistrictService = new Mock<IDistrictRepository>();
+        
+        var expectedErrorOrDistricts = ErrorOrFactory.From(expectedDistricts);
+        mockDistrictService.Setup(s => s.GetDistrictsAsync()).ReturnsAsync(expectedErrorOrDistricts);
+        var useCase = new FetchAllDistrictsUseCase(mockDistrictService.Object);
+        
+        // Act
+        var result = await useCase.ExecuteAsync(null);
+        
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Count().Should().Be(1);
+        result.Value.First().RegionId.Should().Be(regionId.ToString());
     }
 }
