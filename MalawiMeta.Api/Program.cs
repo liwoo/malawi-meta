@@ -1,5 +1,6 @@
-﻿using MalawiMeta.Api.Domain.Services;
-using MalawiMeta.Api.Endpoints.Districts;
+﻿using MalawiMeta.Api.Endpoints.Districts;
+using MalawiMeta.Api.Exceptions;
+using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.UseCases.Districts;
 using Microsoft.OpenApi.Models;
 
@@ -8,6 +9,7 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Configuration.AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
 
 // app registrations
+builder.Services.AddExceptionHandler<DefaultExceptionHandler>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -20,13 +22,14 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddScoped<IDistrictService, InMemoryDistrictService>();
+builder.Services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
 builder.Services.AddScoped<IFetchAllDistrictsUseCase, FetchAllDistrictsUseCase>();
 builder.Services.AddScoped<IFetchDistrictByIdUseCase, FetchDistrictByIdUseCase>();
 
 var app = builder.Build();
 /*---------------------------------*/
 // middleware registrations
+app.UseExceptionHandler(opt => { });
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

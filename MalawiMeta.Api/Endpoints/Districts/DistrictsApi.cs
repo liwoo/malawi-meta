@@ -1,6 +1,3 @@
-using MalawiMeta.Api.TransferObjects;
-using Microsoft.AspNetCore.Mvc;
-
 namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
@@ -14,8 +11,8 @@ public static partial class DistrictEndpoints
 
     private static RouteGroupBuilder MapDistrictsApi(this RouteGroupBuilder group)
     {
-        group.MapAllDistricts();
-        group.MapDistrictById();
+        group.MapAllDistrictsEndpoint();
+        group.MapDistrictByIdEndpoint();
         return group;
     }
 }

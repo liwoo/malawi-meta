@@ -5,7 +5,7 @@ A district is a smaller area of land that is part of a region. It is a smaller a
 
 ## Methods
 ```csharp
-public class ILocationSerivice
+public class IDistrictService
 {
     public void UpdateMalePopulation(long population)
     public void UpdateFemalePopulation(long population)
@@ -16,6 +16,8 @@ public class ILocationSerivice
     public void RemoveCity(Guid cityId)
     public void AddConstituency(Guid constituencyId)
     public void RemoveConstituency(Guid constituencyId)
+    /*----------------------------*/
+    /*  Data Acess Methods (Repo) */
     /*----------------------------*/
     public District GetDistrictById(Guid id)
     public List<District> GetBatchDistrictsById(List<Guid> ids)

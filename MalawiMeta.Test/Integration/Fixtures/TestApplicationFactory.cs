@@ -1,4 +1,4 @@
-using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +11,7 @@ public class TestApplicationFactory<TStartup> : WebApplicationFactory<TStartup> 
     {
         builder.ConfigureServices(services =>
         {
-            services.AddScoped<IDistrictService, InMemoryDistrictService>();
+            services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
         });
     }
 }

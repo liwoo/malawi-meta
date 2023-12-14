@@ -1,40 +1,29 @@
-using System.Collections;
 using ErrorOr;
-using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.TransferObjects;
 
 namespace MalawiMeta.Api.UseCases.Districts;
 
-public record FetchDistrictByIdCaseArgs(string Id);
+public record FetchDistrictByIdCaseArgs(Guid Id);
 
-public interface IFetchDistrictByIdUseCase : IUseCase<FetchDistrictByIdCaseArgs, ErrorOr<DistrictResponseDto>>
+public interface IFetchDistrictByIdUseCase : IUseCase<FetchDistrictByIdCaseArgs, ErrorOr<DistrictResponseDto>>;
+
+public class FetchDistrictByIdUseCase(IDistrictRepository districtRepository) : IFetchDistrictByIdUseCase
 {
-}
-
-
-public class FetchDistrictByIdUseCase : IFetchDistrictByIdUseCase
-{
-    private readonly IDistrictService _districtService;
-
-    public FetchDistrictByIdUseCase(IDistrictService districtService)
-    {
-        _districtService = districtService;
-    }
-
     public async Task<ErrorOr<DistrictResponseDto>> ExecuteAsync(FetchDistrictByIdCaseArgs? args)
     {
-        var guuidId = Guid.TryParse(args?.Id, out var guuid) ? guuid : Guid.Empty;
-        if (guuidId == Guid.Empty)
+        if (args?.Id == null)
         {
-            return Error.Validation(description: "ID is not a valid GUID", code: StatusCodes.Status400BadRequest.ToString());
+            return Error.Validation();
         }
-        
-        var districtResult = await _districtService.GetDistrictByIdAsync(guuidId);
-        
+
+        var districtResult = await districtRepository.GetDistrictByIdAsync(args.Id);
+
         return districtResult.IsError switch
         {
             true => districtResult.FirstError,
-            _ => new DistrictResponseDto(districtResult.Value.Name, districtResult.Value.Code, districtResult.Value.RegionId.ToString())
+            _ => new DistrictResponseDto(districtResult.Value.Id, districtResult.Value.Name, districtResult.Value.Code,
+                districtResult.Value.RegionId.Value.ToString())
         };
     }
 }

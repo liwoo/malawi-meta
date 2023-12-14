@@ -1,17 +1,17 @@
-using MalawiMeta.Api.Domain.ValueObjects;
+using MalawiMeta.Api.Domain.Shared.ValueObjects;
 
-namespace MalawiMeta.Api.Domain.Entities;
+namespace MalawiMeta.Api.Domain.Region;
 
-public sealed class Region : AuditedEntity<Guid>
+public sealed class Region : AuditedAggregateRoot<Guid>
 {
     public string Name { get; private set; }
-    public List<Guid> DistrictIds { get; private set; }
+    public List<DistrictId> DistrictIds { get; private set; }
     public Population Population { get; private set; }
     
     private Region(Guid id, string name) : base(id)
     {
         Name = name;
-        DistrictIds = new List<Guid>();
+        DistrictIds = new List<DistrictId>();
         Population = new Population(0, 0, 0);
     }
     

@@ -1,33 +1,23 @@
-using System.Collections;
 using ErrorOr;
-using MalawiMeta.Api.Domain.Services;
+using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.TransferObjects;
 
 namespace MalawiMeta.Api.UseCases.Districts;
 
+public interface IFetchAllDistrictsUseCase : IUseCase<object, ErrorOr<IEnumerable<DistrictResponseDto>>>;
 
-public interface IFetchAllDistrictsUseCase : IUseCase<object, ErrorOr<IEnumerable<DistrictResponseDto>>>
+public class FetchAllDistrictsUseCase(IDistrictRepository districtRepository) : IFetchAllDistrictsUseCase
 {
-}
-
-public class FetchAllDistrictsUseCase : IFetchAllDistrictsUseCase
-{
-    private readonly IDistrictService _districtService;
-
-    public FetchAllDistrictsUseCase(IDistrictService districtService)
-    {
-        _districtService = districtService;
-    }
-
     public async Task<ErrorOr<IEnumerable<DistrictResponseDto>>> ExecuteAsync(object? args)
     {
-        var districtResult = await _districtService.GetDistrictsAsync();
+        var districtResult = await districtRepository.GetDistrictsAsync();
 
         return districtResult.IsError switch
         {
             true => districtResult.FirstError,
-            _ => districtResult.Value.Select(d => new DistrictResponseDto(d.Name, d.Code, d.RegionId.ToString())).ToList()
+            _ => districtResult.Value
+                .Select(d => new DistrictResponseDto(d.Id, d.Name, d.Code, d.RegionId.Value.ToString()))
+                .ToList()
         };
-        
     }
 }

@@ -13,6 +13,8 @@ public class IWardService
     public void AddPollingCenter(Guid pollingCenterId)
     public void RemovePollingCenter(Guid pollingCenterId) 
     /*----------------------------*/
+    /*  Data Acess Methods (Repo) */
+    /*----------------------------*/
     public Ward GetWardById(Guid id)
     public Ward SearchWardByName(string name)
     public List<Ward> GetBatchWardsById(List<Guid> ids)
