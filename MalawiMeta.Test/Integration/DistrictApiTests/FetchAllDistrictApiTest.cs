@@ -18,7 +18,7 @@ public class FetchAllDistrictApiTest
    }
    
    [Fact]
-   public async Task Get_All_Districts_Endpoint_With_Correct_Parameters_Should_Return_All_Districts()
+   public async Task GetAllDistrictsEndpoint_WithCorrectParameters_ShouldReturnAllDistricts()
    {
       var client = _factory.CreateClient();
       var response = await client.GetAsync("/api/districts");
@@ -29,10 +29,11 @@ public class FetchAllDistrictApiTest
    }
    
    [Fact]
-   public async Task Get_All_Districts_Endpoint_With_Wron_Endpoint_Should_Return_Exception()
+   public async Task GetAllDistrictsEndpoint_WithWrongEndpoint_ShouldReturnException()
    {
       var client = _factory.CreateClient();
       var response = await client.GetAsync("/apis/districts/");
       response.StatusCode.Should().Be((HttpStatusCode) StatusCodes.Status404NotFound);
    }
+   
 }
