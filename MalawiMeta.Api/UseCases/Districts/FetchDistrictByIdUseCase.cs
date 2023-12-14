@@ -12,13 +12,12 @@ public class FetchDistrictByIdUseCase(IDistrictRepository districtRepository) : 
 {
     public async Task<ErrorOr<DistrictResponseDto>> ExecuteAsync(FetchDistrictByIdCaseArgs? args)
     {
-        var id = args?.Id;
-        if (id == null)
+        if (args?.Id == null)
         {
             return Error.Validation();
         }
 
-        var districtResult = await districtRepository.GetDistrictByIdAsync(id.Value);
+        var districtResult = await districtRepository.GetDistrictByIdAsync(args.Id);
 
         return districtResult.IsError switch
         {
