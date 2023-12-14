@@ -25,9 +25,9 @@ public sealed class District : AuditedAggregateRoot<Guid>
         ConstituencyIds = new List<ConstituencyId>();
     }
     
-    public static District Create(string name, string code, RegionId regionId)
+    public static District Create(Guid id, string name, string code, RegionId regionId)
     {
-        return new District(Guid.NewGuid(), name, code, regionId);
+        return new District(id, name, code, regionId);
     }
 }
 
