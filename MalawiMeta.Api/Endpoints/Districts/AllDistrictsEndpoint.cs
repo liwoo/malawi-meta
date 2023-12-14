@@ -1,5 +1,3 @@
-using ErrorOr;
-using MalawiMeta.Api.Extensions;
 using MalawiMeta.Api.TransferObjects;
 using MalawiMeta.Api.UseCases.Districts;
 
