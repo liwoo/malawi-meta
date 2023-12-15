@@ -1,4 +1,4 @@
-namespace MalawiMeta.Api.Endpoints.Districts;
+﻿namespace MalawiMeta.Api.Endpoints.Districts;
 
 public static partial class DistrictEndpoints
 {
@@ -13,6 +13,7 @@ public static partial class DistrictEndpoints
     {
         group.MapAllDistrictsEndpoint();
         group.MapDistrictByIdEndpoint();
+        group.MapDistrictByCodeEndpoint();
         return group;
     }
 }
