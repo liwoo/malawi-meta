@@ -1,4 +1,4 @@
-using ErrorOr;
+﻿using ErrorOr;
 using MalawiMeta.Api.Domain.District;
 using MalawiMeta.Api.Domain.Shared.ValueObjects;
 
@@ -8,6 +8,7 @@ public interface IDistrictRepository
 {
     public Task<ErrorOr<IEnumerable<District>>> GetDistrictsAsync();
     public Task<ErrorOr<District>> GetDistrictByIdAsync(Guid id);
+    public Task<ErrorOr<District>> GetDistrictByCodeAsync(string code);
 }
 
 public class InMemoryDistrictRepository : IDistrictRepository
@@ -43,6 +44,17 @@ public class InMemoryDistrictRepository : IDistrictRepository
     public Task<ErrorOr<District>> GetDistrictByIdAsync(Guid id)
     {
         var district = _districts.FirstOrDefault(d => d.Id == id);
+
+        return district switch
+        {
+            null => Task.FromResult<ErrorOr<District>>(Error.NotFound()),
+            _ => Task.FromResult<ErrorOr<District>>(district)
+        };
+    }
+
+    public Task<ErrorOr<District>> GetDistrictByCodeAsync(string code)
+    {
+        var district = _districts.FirstOrDefault(d => d.Code == code);
 
         return district switch
         {
