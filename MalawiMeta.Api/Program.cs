@@ -2,6 +2,8 @@
 using MalawiMeta.Api.Exceptions;
 using MalawiMeta.Api.Repositories;
 using MalawiMeta.Api.UseCases.Districts;
+using MalawiMeta.Api.Endpoints.Cities;
+using MalawiMeta.Api.UseCases.Cities;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,10 @@ builder.Services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
 builder.Services.AddScoped<IFetchAllDistrictsUseCase, FetchAllDistrictsUseCase>();
 builder.Services.AddScoped<IFetchDistrictByIdUseCase, FetchDistrictByIdUseCase>();
 
+builder.Services.AddScoped<ICityService, InMemoryCityService>();
+builder.Services.AddScoped<IFetchAllCitiesUseCase, FetchAllCitiesUseCase>();
+builder.Services.AddScoped<IFetchCityByIdUseCase, FetchCityByIdUseCase>();
+
 var app = builder.Build();
 /*---------------------------------*/
 // middleware registrations
@@ -41,6 +47,7 @@ app.UseSwaggerUI(c =>
 /*---------------------------------*/
 // endpoint registrations
 app.MapDistricts();
+app.MapCities();
 
 app.Run();
 
