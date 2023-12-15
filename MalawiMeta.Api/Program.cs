@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<IDistrictRepository, InMemoryDistrictRepository>();
 builder.Services.AddScoped<IFetchAllDistrictsUseCase, FetchAllDistrictsUseCase>();
 builder.Services.AddScoped<IFetchDistrictByIdUseCase, FetchDistrictByIdUseCase>();
+builder.Services.AddScoped<IFetchDistrictByCodeUseCase, FetchDistrictByCodeUseCase>();
 
 var app = builder.Build();
 /*---------------------------------*/
